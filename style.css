@@ -60,7 +60,7 @@ body{
     font-style: normal;
 }
 
-h2 {
+p {
     
     padding: 10px;
     background-color: #FFFFFF;
@@ -73,6 +73,10 @@ h2 {
     background-color: #FFDEDE;
 }
 
-.entra-sai-sala {
+.status {
     background-color: #DCDCDC;
+}
+
+.negrito {
+    font-weight: 700;
 }
