@@ -52,26 +52,29 @@ function carregarMensagens(){
 }
 
 function renderizarMensagens(mensagensDoServidor) {
+   
+    
+    
     let arrayMensagens = mensagensDoServidor.data;
     let imprimir = document.querySelector(".chat");
 
     for(let i = 0; i < arrayMensagens.length; i++){
         if (arrayMensagens[i].type === 'status'){
             imprimir.innerHTML = imprimir.innerHTML + `
-            <p class="status"><time>(${arrayMensagens[i].time}) </time><strong>${arrayMensagens[i].from} </strong>${arrayMensagens[i].text}</p>
+            <p class="status"><time>(${arrayMensagens[i].time}) </time><strong> ${arrayMensagens[i].from} </strong> ${arrayMensagens[i].text}</p>
             `
         } else if (arrayMensagens[i].type === 'message'){
             imprimir.innerHTML = imprimir.innerHTML + `
-            <p class="message"><time>(${arrayMensagens[i].time}) </time><strong>${arrayMensagens[i].from} </strong> para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
+            <p class="message"><time>(${arrayMensagens[i].time}) </time><strong> ${arrayMensagens[i].from} </strong> para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
             `
         } else if (arrayMensagens[i].type === 'private_message' && arrayMensagens[i].to === nomeUsuario){
             imprimir.innerHTML = imprimir.innerHTML + `
-            <p class="private-message"><time>(${arrayMensagens[i].time}) </time><strong>${arrayMensagens[i].from} </strong> reservadamente para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
+            <p class="private-message"><time>(${arrayMensagens[i].time}) </time><strong> ${arrayMensagens[i].from} </strong> reservadamente para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
             `
         }    
     }
 
-    imprimir.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    imprimir.lastElementChild.scrollIntoView();
 }
 
 function erroAoCarregarMensagens(erro) {
@@ -94,10 +97,11 @@ function enviarMensagem(){
     let requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
     requisicao.then(atualizarChat); 
     requisicao.catch(erroDeEnvio); 
+
 }
 
 function atualizarChat() {
-    // requisição aceita = enviar mensagem e atualizar o chat com a nova mensagem
+    document.querySelector("input").value = "";
     renderizarMensagens();
 }
 

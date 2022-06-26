@@ -4,7 +4,7 @@ body{
     background-color: #E5E5E5;
     max-width: 767px;
     font-family: 'Roboto', sans-serif;
-    margin: 105px 0px;
+    margin: 95px 0px;
 }
 
 .menu, .mensagem {
@@ -61,7 +61,6 @@ body{
 }
 
 p {
-    width: 100vw;
     padding: 10px;
     background-color: #FFFFFF;
     margin-bottom: 5px;
@@ -82,3 +81,11 @@ p {
 strong {
     font-weight: 700;
 }
+
+time{
+    color: #AAAAAA;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+ }
