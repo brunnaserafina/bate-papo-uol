@@ -61,15 +61,17 @@ body{
 }
 
 p {
-    
+    width: 100vw;
     padding: 10px;
     background-color: #FFFFFF;
     margin-bottom: 5px;
     line-height: 20px;
     font-size: 14px;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
-.reservado {
+.private-message {
     background-color: #FFDEDE;
 }
 
@@ -77,6 +79,6 @@ p {
     background-color: #DCDCDC;
 }
 
-.negrito {
+strong {
     font-weight: 700;
 }

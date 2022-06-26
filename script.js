@@ -15,33 +15,71 @@ function login() {
 }
 
 function entrouNaSala() {
-   alert("entrou");
-   //função para carregar as mensagens
+   console.log("entrou");
    setInterval(carregarMensagens, 3000);
-   //função para verificar se está online
-   setInterval(manterConexao, 5000);
+   setInterval(manterConexao, 5000); 
 }
 
 function falhaNoLogin(erro){
-   alert(erro);
-   // se for erro 400 pedir o nome de usuário novamente
-   // se for outro erro informar o erro
+   if(Number(erro.response.status) === 400) {
+    alert("Usuário já existente! Escolha outro nome de usuário.");
+    window.location.reload();
+   } else {
+    alert(erro);
+    window.location.reload();
+   }
 }
 
 function manterConexao(){
     let conexao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", usuario);
-    conexao.then(continuaOnline); // permanecer na página
-    conexao.catch(saiuDaSala); // recarregar a página (window.location.reload())
+    conexao.then(continuaOnline);
+    conexao.catch(saiuDaSala);
+}
+
+function continuaOnline(){
+    console.log("Continua online...");
+}
+
+function saiuDaSala() {
+    window.location.reload();
 }
 
 function carregarMensagens(){
     let mensagens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     console.log(mensagens);
-    mensagens.then(); // ao carregar renderizar as mensagens no html para o cliente, chat deve ter rolagem automática por padrão (utilizar scrollIntoView)
-    mensagens.catch(); // ao não carregar mostrar o erro e recarregar a página
+    mensagens.then(renderizarMensagens); 
+    mensagens.catch(erroAoCarregarMensagens);
 }
 
-function enviarMensagens(){
+function renderizarMensagens(mensagensDoServidor) {
+    let arrayMensagens = mensagensDoServidor.data;
+    let imprimir = document.querySelector(".chat");
+
+    for(let i = 0; i < arrayMensagens.length; i++){
+        if (arrayMensagens[i].type === 'status'){
+            imprimir.innerHTML = imprimir.innerHTML + `
+            <p class="status"><time>(${arrayMensagens[i].time}) </time><strong>${arrayMensagens[i].from} </strong>${arrayMensagens[i].text}</p>
+            `
+        } else if (arrayMensagens[i].type === 'message'){
+            imprimir.innerHTML = imprimir.innerHTML + `
+            <p class="message"><time>(${arrayMensagens[i].time}) </time><strong>${arrayMensagens[i].from} </strong> para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
+            `
+        } else if (arrayMensagens[i].type === 'private_message' && arrayMensagens[i].to === nomeUsuario){
+            imprimir.innerHTML = imprimir.innerHTML + `
+            <p class="private-message"><time>(${arrayMensagens[i].time}) </time><strong>${arrayMensagens[i].from} </strong> reservadamente para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
+            `
+        }    
+    }
+
+    imprimir.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'center' })
+}
+
+function erroAoCarregarMensagens(erro) {
+    console.log(erro);
+    window.location.reload();
+}
+
+function enviarMensagem(){
     mensagemDigitada = document.querySelector("input").value;
 
     // no envio da mensagem informar o remetente, destinatário e se a mensagem é reservada ou não (ao fazer o bônus)
@@ -51,11 +89,22 @@ function enviarMensagens(){
         to: "Todos",
         text: `${mensagemDigitada}`,
         type: "message"
-    }
+    };
 
     let requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
-    requisicao.then(); // requisição aceita = enviar mensagem e atualizar o chat com a nova mensagem
-    requisicao.catch(); // informar erro, significa que o usário não está mais na sala e deve recarregar a página (window.location.reload())
+    requisicao.then(atualizarChat); 
+    requisicao.catch(erroDeEnvio); 
+}
+
+function atualizarChat() {
+    // requisição aceita = enviar mensagem e atualizar o chat com a nova mensagem
+    renderizarMensagens();
+}
+
+function erroDeEnvio(erro) {
+    console.log(erro);
+    console.log("O usuário não está mais na sala");
+    window.location.reload();
 }
 
 login();

@@ -16,14 +16,11 @@
         <ion-icon name="people"></ion-icon>
     </div>
     <div class="chat">
-        <p class="message"><span class="time">${time}</span> <span class="negrito">${usuario}</span> para <span class="negrito">${destinatario}</span>: ${mensagem}</p>
-        <p class="status"><span class="time">${time}</span> <span class="negrito">${usuario}</span> entra na sala...</p>
-        <p class="status"><span class="time">${time}</span> <span class="negrito">${usuario}</span> sai da sala...</p>
-        <p class="reservado"><span class="time">${time}</span> <span class="negrito">${usuario}</span> reservadamente para <span class="negrito">${destinatario}</span>: ${mensagem}</p>
+        
     </div>
     <div class="mensagem">
         <input type="text" placeholder="Escreva aqui...">
-        <ion-icon name="paper-plane-outline"></ion-icon>
+        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
     </div>
  
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
