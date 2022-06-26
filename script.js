@@ -100,6 +100,7 @@ function enviarMensagem(){
 
 }
 
+
 function atualizarChat() {
     document.querySelector("input").value = "";
     renderizarMensagens();
@@ -107,9 +108,17 @@ function atualizarChat() {
 
 function erroDeEnvio(erro) {
     console.log(erro);
-    console.log("O usuário não está mais na sala");
     window.location.reload();
 }
 
+function enviarComEnter(){
+    document.querySelector("input").addEventListener("keypress", function(e) {
+        if(e.key === 'Enter') {
+            enviarMensagem();
+        }
+      });
+}
+
 login();
+enviarComEnter();
 
