@@ -42,7 +42,7 @@ function manterConexao(){
 
 function carregarMensagens(){
     let mensagens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
-    console.log(mensagens);
+    //console.log(mensagens);
     mensagens.then(renderizarMensagens); 
     mensagens.catch(() => {window.location.reload();});
 }
@@ -72,8 +72,8 @@ function renderizarMensagens(mensagensDoServidor) {
 }
 
 function enviarMensagem(){
-    mensagemDigitada = document.querySelector("input").value;
-    
+    mensagemDigitada = document.querySelector(".envio-mensagem").value;
+
     mensagem = {
         from: `${nomeUsuario}`,
         to: "Todos",
@@ -88,7 +88,7 @@ function enviarMensagem(){
 }
 
 function atualizarChat() {
-    document.querySelector("input").value = "";
+    document.querySelector(".envio-mensagem").value = "";
     renderizarMensagens();
 }
 
