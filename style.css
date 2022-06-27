@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap');
 
 body{
-    background-color: #E5E5E5;
     max-width: 767px;
     font-family: 'Roboto', sans-serif;
     margin: 95px 0px;
+}
+
+.telaChatMensagens{
+    background-color: #E5E5E5;
 }
 
 .menu, .mensagem {
@@ -88,6 +91,65 @@ time{
     color: #AAAAAA;
 }
 
-input:focus::-webkit-input-placeholder {
-    color: transparent;
+
+ .tela-de-entrada, .entrando {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
  }
+
+ .logo2{
+    width: 130px;
+    height: 92px;
+ }
+.loading {
+    width: 350px;
+}
+ .tela-de-entrada>input{
+    margin-top: 105px;
+    margin-bottom: 15px;
+    width: 261px;
+    height: 54px;
+    border-radius: 4px;
+    text-align: center;
+    border: solid 1px #D7D7D7;
+    font-size: 18px;
+    font-family: Roboto;
+ }
+
+ .tela-de-entrada>input::placeholder{
+    color: #AEAEAE;
+ }
+
+ .tela-de-entrada>button{
+    width: 109px;
+    height: 45px;
+    border-radius: 9px;
+    border: none;
+    background-color: #E7E7E7;
+    font-size: 18px;
+    color:#696969;
+    font-family: Roboto;
+ }
+
+.nome-usuario:focus{
+    outline: none;
+ }
+
+.icon-enviar:hover {
+    color: #AEAEAE;
+}
+
+.entrando>p {
+    font-family: Roboto;
+    font-size: 22px;
+    color: #000000;
+    font-weight: 500;
+    margin-top: -80px;
+ }
+
+.escondida {
+    display: none;
+}

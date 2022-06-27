@@ -4,10 +4,12 @@ let mensagem;
 let mensagemDigitada;
 
 function login() {
-    nomeUsuario = prompt("Digite seu nome de usuário: ");
+    nomeUsuario = document.querySelector(".nome-usuario").value;
     usuario = { 
         name: nomeUsuario 
     };
+    document.querySelector(".tela-de-entrada").classList.add("escondida");
+    document.querySelector(".entrando").classList.remove("escondida");
 
     let requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", usuario);
     requisicao.then(entrouNaSala);
@@ -16,6 +18,8 @@ function login() {
 
 function entrouNaSala() {
    console.log("entrou");
+   document.querySelector(".entrando").classList.add("escondida");
+   document.querySelector(".telaChatMensagens").classList.remove("escondida"); 
    setInterval(carregarMensagens, 3000);
    setInterval(manterConexao, 5000); 
 }
@@ -32,54 +36,38 @@ function falhaNoLogin(erro){
 
 function manterConexao(){
     let conexao = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", usuario);
-    conexao.then(continuaOnline);
-    conexao.catch(saiuDaSala);
-}
-
-function continuaOnline(){
-    console.log("Continua online...");
-}
-
-function saiuDaSala() {
-    window.location.reload();
+    conexao.then(() => {console.log("Continua online...")});
+    conexao.catch(() => {window.location.reload();});
 }
 
 function carregarMensagens(){
     let mensagens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     console.log(mensagens);
     mensagens.then(renderizarMensagens); 
-    mensagens.catch(erroAoCarregarMensagens);
+    mensagens.catch(() => {window.location.reload();});
 }
 
 function renderizarMensagens(mensagensDoServidor) {
-   
-    
-    
     let arrayMensagens = mensagensDoServidor.data;
-    let imprimir = document.querySelector(".chat");
+    let chat = document.querySelector(".chat");
 
     for(let i = 0; i < arrayMensagens.length; i++){
         if (arrayMensagens[i].type === 'status'){
-            imprimir.innerHTML = imprimir.innerHTML + `
+            chat.innerHTML = chat.innerHTML + `
             <p class="status"><time>(${arrayMensagens[i].time}) </time><strong> ${arrayMensagens[i].from} </strong> ${arrayMensagens[i].text}</p>
             `
         } else if (arrayMensagens[i].type === 'message'){
-            imprimir.innerHTML = imprimir.innerHTML + `
+            chat.innerHTML = chat.innerHTML + `
             <p class="message"><time>(${arrayMensagens[i].time}) </time><strong> ${arrayMensagens[i].from} </strong> para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
             `
         } else if (arrayMensagens[i].type === 'private_message' && arrayMensagens[i].to === nomeUsuario){
-            imprimir.innerHTML = imprimir.innerHTML + `
+            chat.innerHTML = chat.innerHTML + `
             <p class="private-message"><time>(${arrayMensagens[i].time}) </time><strong> ${arrayMensagens[i].from} </strong> reservadamente para <strong>${arrayMensagens[i].to}</strong>: ${arrayMensagens[i].text}</p>
             `
         }    
     }
 
-    imprimir.lastElementChild.scrollIntoView();
-}
-
-function erroAoCarregarMensagens(erro) {
-    console.log(erro);
-    window.location.reload();
+    chat.lastElementChild.scrollIntoView();
 }
 
 function enviarMensagem(){
@@ -94,12 +82,18 @@ function enviarMensagem(){
         type: "message"
     };
 
+    mensagemPrivada = {
+        from: `${nomeUsuario}`,
+        to: `${nomeDestinatario}`,
+        text: `${mensagemDigitada}`,
+        type: "private_message"
+    };
+
     let requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
     requisicao.then(atualizarChat); 
     requisicao.catch(erroDeEnvio); 
 
 }
-
 
 function atualizarChat() {
     document.querySelector("input").value = "";
@@ -112,13 +106,21 @@ function erroDeEnvio(erro) {
 }
 
 function enviarComEnter(){
-    document.querySelector("input").addEventListener("keypress", function(e) {
+    document.querySelector(".envio-mensagem").addEventListener("keypress", function(e) {
         if(e.key === 'Enter') {
             enviarMensagem();
         }
       });
 }
 
-login();
+function enviarComEnter2(){
+    document.querySelector(".nome-usuario").addEventListener("keypress", function(b) {
+        if(b.key === 'Enter') {
+            login();
+        }
+      });
+}
+
 enviarComEnter();
+enviarComEnter2();
 

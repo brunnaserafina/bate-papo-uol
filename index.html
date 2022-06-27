@@ -11,18 +11,36 @@
 </head>
 
 <body>
-    <div class="menu">
-        <img src="./imagens/logo1.png" alt="">
-        <ion-icon name="people"></ion-icon>
+    <div class="telaChatMensagens escondida">
+        <div class="menu">
+            <img src="./imagens/logo1.png" alt="">
+            <ion-icon name="people"></ion-icon>
+        </div>
+    
+        <div class="chat">
+        </div>
+    
+        <div class="mensagem">
+            <input class="envio-mensagem" type="text" placeholder="Escreva aqui...">
+            <ion-icon name="paper-plane-outline" class="icon-enviar" onclick="enviarMensagem()"></ion-icon>
+        </div>
     </div>
-    <div class="chat">
-        
+    
+    <div class="tela-de-entrada">
+        <img class="logo2" src="./imagens/logo 2.png">
+        <input class="nome-usuario" type="text" placeholder="Digite seu nome">
+        <button onclick="login()">Entrar</button>
     </div>
-    <div class="mensagem">
-        <input type="text" placeholder="Escreva aqui...">
-        <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
+
+    <div class="entrando escondida">
+        <img class="logo2" src="./imagens/logo 2.png">
+        <img class="gif" src="./imagens/loading.gif" alt="">
+        <p>Entrando...</p>
     </div>
- 
+
+
+
+    <script src="https://kit.fontawesome.com/d382091ada.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
