@@ -1,17 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap');
 
-body{
+body {
     max-width: 767px;
     font-family: 'Roboto', sans-serif;
     margin: 95px 0px;
+    background-color: #FFFFFF;
 }
 
-.telaChatMensagens{
+.chat {
     background-color: #E5E5E5;
 }
 
-.menu, .mensagem {
-    background-color:#FFFFFF;
+.fundo-chat{
+    background-color: #E5E5E5;
+}
+
+.menu,
+.mensagem {
+    background-color: #FFFFFF;
     width: 100%;
     height: 80px;
     display: flex;
@@ -21,7 +27,7 @@ body{
     position: fixed;
 }
 
-.menu{
+.menu {
     top: 0;
     left: 0;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
@@ -31,7 +37,7 @@ body{
     font-size: 45px;
 }
 
-.menu>img{
+.menu>img {
     width: 75px;
     height: 53px;
 }
@@ -42,12 +48,12 @@ body{
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.mensagem>ion-icon{
+.mensagem>ion-icon {
     margin-top: 5px;
     font-size: 30px;
 }
 
-.mensagem>input{
+.mensagem>input {
     border: none;
     width: 90%;
     font-family: Roboto;
@@ -56,12 +62,12 @@ body{
     font-style: italic;
 }
 
-.mensagem>input::placeholder{
+.mensagem>input::placeholder {
     color: #000000;
 }
 
-.mensagem>input:focus{
-    outline:none;
+.mensagem>input:focus {
+    outline: none;
     font-style: normal;
 }
 
@@ -87,27 +93,31 @@ strong {
     font-weight: 700;
 }
 
-time{
+time {
     color: #AAAAAA;
 }
 
 
- .tela-de-entrada, .entrando {
+.tela-de-entrada,
+.entrando {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
- }
+    background-color: #FFFFFF;
+}
 
- .logo2{
+.logo2 {
     width: 130px;
     height: 92px;
- }
+}
+
 .loading {
     width: 350px;
 }
- .tela-de-entrada>input{
+
+.tela-de-entrada>input {
     margin-top: 105px;
     margin-bottom: 15px;
     width: 261px;
@@ -117,26 +127,26 @@ time{
     border: solid 1px #D7D7D7;
     font-size: 18px;
     font-family: Roboto;
- }
+}
 
- .tela-de-entrada>input::placeholder{
+.tela-de-entrada>input::placeholder {
     color: #AEAEAE;
- }
+}
 
- .tela-de-entrada>button{
+.tela-de-entrada>button {
     width: 109px;
     height: 45px;
     border-radius: 9px;
     border: none;
     background-color: #E7E7E7;
     font-size: 18px;
-    color:#696969;
+    color: #696969;
     font-family: Roboto;
- }
+}
 
-.nome-usuario:focus{
+.nome-usuario:focus {
     outline: none;
- }
+}
 
 .icon-enviar:hover {
     color: #AEAEAE;
@@ -148,7 +158,7 @@ time{
     color: #000000;
     font-weight: 500;
     margin-top: -80px;
- }
+}
 
 .escondida {
     display: none;

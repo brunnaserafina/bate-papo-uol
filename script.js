@@ -48,6 +48,7 @@ function carregarMensagens(){
 }
 
 function renderizarMensagens(mensagensDoServidor) {
+    document.querySelector('body').classList.add("fundo-chat");
     let arrayMensagens = mensagensDoServidor.data;
     let chat = document.querySelector(".chat");
 
@@ -72,9 +73,7 @@ function renderizarMensagens(mensagensDoServidor) {
 
 function enviarMensagem(){
     mensagemDigitada = document.querySelector("input").value;
-
-    // no envio da mensagem informar o remetente, destinatário e se a mensagem é reservada ou não (ao fazer o bônus)
-
+    
     mensagem = {
         from: `${nomeUsuario}`,
         to: "Todos",
@@ -82,27 +81,15 @@ function enviarMensagem(){
         type: "message"
     };
 
-    mensagemPrivada = {
-        from: `${nomeUsuario}`,
-        to: `${nomeDestinatario}`,
-        text: `${mensagemDigitada}`,
-        type: "private_message"
-    };
-
     let requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
     requisicao.then(atualizarChat); 
-    requisicao.catch(erroDeEnvio); 
+    requisicao.catch(() => {window.location.reload();}); 
 
 }
 
 function atualizarChat() {
     document.querySelector("input").value = "";
     renderizarMensagens();
-}
-
-function erroDeEnvio(erro) {
-    console.log(erro);
-    window.location.reload();
 }
 
 function enviarComEnter(){
@@ -123,4 +110,5 @@ function enviarComEnter2(){
 
 enviarComEnter();
 enviarComEnter2();
+
 
