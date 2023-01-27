@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left"> Esta aplicação é um bate-papo totalmente funcional, inspirado no saudoso Bate-Papo UOL. Digite seu nome e interaja com as pessoas!</p>
+<p align="left"> Esta aplicação é uma página web de um bate-papo totalmente funcional, inspirado no saudoso Bate-Papo UOL. Digite seu nome e interaja com as pessoas!</p>
 
 ###
 
