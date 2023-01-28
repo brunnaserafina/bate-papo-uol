@@ -54,7 +54,7 @@
 2. Clone este repositório na pasta criada/selecionada;
 
 ```bash
- $ git clone https://github.com/brunnaserafina/driven-eats.git
+ $ git clone https://github.com/brunnaserafina/bate-papo-uol.git
 ```
 
 3. Execute o index.html
