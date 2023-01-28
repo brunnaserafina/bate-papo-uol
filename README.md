@@ -8,13 +8,14 @@
 
 <div align="center"> 
 
-[BatePapo.webm](https://user-images.githubusercontent.com/106851605/215190039-1ea2b965-513d-49d8-a3a2-dfbfa32a6552.webm)
+<img height="550" src="https://user-images.githubusercontent.com/106851605/215232188-ad3f9047-c45a-44fc-a398-d56e82a7fbfe.gif" />
+
 
 </div> 
 
 ###
 
-<p align="center">Acesse a aplicação e se converse à vontade! => https://brunnaserafina.github.io/batepapouol-front</p>
+<p align="center">Acesse a aplicação e converse à vontade! => https://brunnaserafina.github.io/bate-papo-uol</p>
 
 
 ###
@@ -49,9 +50,14 @@
 
 ### ▶️ Rodando a aplicação
 
-- Crie ou selecione uma pasta com o nome de sua preferência;
-- Clone este repositório na pasta criada/selecionada;
-- Veja a página ao vivo no navegador com a extensão Live Server - caso utilize o VSCode.
+1. Crie ou selecione uma pasta com o nome de sua preferência;
+2. Clone este repositório na pasta criada/selecionada;
+
+```bash
+ $ git clone https://github.com/brunnaserafina/driven-eats.git
+```
+
+3. Execute o index.html
 
 ###
 <br />
